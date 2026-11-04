@@ -1,3 +1,48 @@
+-- Users table
+-- Stores user profile information
+
+CREATE TABLE IF NOT EXISTS Users (
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    full_name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    age INTEGER NOT NULL,
+    role TEXT NOT NULL DEFAULT 'PARTICIPANT',
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CHECK (age > 0),
+    CHECK (role IN ('ADMIN', 'PARTICIPANT'))
+    );
+
+-- Credentials table
+-- Stores login credentials separately from user profiles
+
+CREATE TABLE IF NOT EXISTS Credentials (
+    user_id INTEGER PRIMARY KEY,
+    password_hash TEXT NOT NULL,
+
+    FOREIGN KEY (user_id)
+    REFERENCES Users(user_id)
+    ON DELETE CASCADE
+);
+
+-- Conferences table
+-- Stores conference details and maximum capacity
+
+CREATE TABLE IF NOT EXISTS Conferences (
+    conference_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    location TEXT NOT NULL,
+    start_time TEXT NOT NULL,
+    end_time TEXT NOT NULL,
+    capacity INTEGER NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CHECK (capacity > 0),
+    CHECK (end_time > start_time)
+);
+
+
 
 --Registration table(Ilsa)
 CREATE TABLE IF NOT EXISTS Registrations (
@@ -13,7 +58,7 @@ CREATE TABLE IF NOT EXISTS Registrations (
     UNIQUE (user_id, conference_id),
 
     CHECK (status IN ('CONFIRMED', 'WAITLISTED', 'CANCELLED'))
-    );
+);
 
 --Waiting List Table (Ilsa)
 CREATE TABLE IF NOT EXISTS WaitingList (
