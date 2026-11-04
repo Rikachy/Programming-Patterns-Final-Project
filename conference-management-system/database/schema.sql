@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS Conferences (
     conference_id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     description TEXT,
-    location TEXT NOT NULL,
+    location TEXT, --Location is optional
     start_time TEXT NOT NULL,
     end_time TEXT NOT NULL,
     capacity INTEGER NOT NULL,
