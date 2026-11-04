@@ -10,7 +10,7 @@ public class DaoException extends RuntimeException {
         super(message, cause);
     }
 
-    public boolean isUniqueViolation() {
+    public boolean isUniqueViolation() { //for emails for example -> cant have duplicate emails
         Throwable t = getCause();
         return t != null && t.getMessage() != null
                 && t.getMessage().contains("UNIQUE constraint failed");
