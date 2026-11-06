@@ -1,6 +1,7 @@
 package com.conference.dao;
 
 import com.conference.database.ConnectionFactory;
+import com.conference.exception.DaoException;
 import com.conference.model.Conference;
 
 import java.sql.Connection;
@@ -34,7 +35,7 @@ public class ConferenceDao {
 
     // CREATE: returns the new conference_id.
     // description and location can be null (they are optional).
-    public int createConference(Conference conference) throws SQLException {
+    public int createConference(Conference conference) {
 
         String sql = """
                 INSERT INTO Conferences
@@ -65,12 +66,12 @@ public class ConferenceDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Failed to create conference", e);
-            throw e;
+            throw new DaoException("Could not create conference", e);
         }
     }
 
     // READ one conference. Returns null if not found.
-    public Conference findById(int conferenceId) throws SQLException {
+    public Conference findById(int conferenceId) {
 
         String sql = """
                 SELECT conference_id, title, description, location,
@@ -94,12 +95,13 @@ public class ConferenceDao {
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE,
                     "Failed to find conference: " + conferenceId, e);
-            throw e;
+            throw new DaoException(
+                    "Could not find conference " + conferenceId, e);
         }
     }
 
     // READ all conferences, earliest first.
-    public List<Conference> findAll() throws SQLException {
+    public List<Conference> findAll() {
 
         List<Conference> conferences = new ArrayList<>();
 
@@ -120,14 +122,14 @@ public class ConferenceDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Failed to retrieve conferences", e);
-            throw e;
+            throw new DaoException("Could not retrieve conferences", e);
         }
 
         return conferences;
     }
 
     // UPDATE: returns the number of rows changed (0 = conference not found).
-    public int updateConference(Conference conference) throws SQLException {
+    public int updateConference(Conference conference) {
 
         String sql = """
                 UPDATE Conferences
@@ -153,12 +155,14 @@ public class ConferenceDao {
             LOGGER.log(Level.SEVERE,
                     "Failed to update conference: "
                             + conference.getConferenceId(), e);
-            throw e;
+            throw new DaoException(
+                    "Could not update conference "
+                            + conference.getConferenceId(), e);
         }
     }
 
     // DELETE: returns the number of rows deleted (0 = conference not found).
-    public int deleteConference(int conferenceId) throws SQLException {
+    public int deleteConference(int conferenceId) {
 
         String sql = """
                 DELETE FROM Conferences
@@ -175,7 +179,8 @@ public class ConferenceDao {
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE,
                     "Failed to delete conference: " + conferenceId, e);
-            throw e;
+            throw new DaoException(
+                    "Could not delete conference " + conferenceId, e);
         }
     }
 }

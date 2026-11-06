@@ -1,6 +1,7 @@
 package com.conference.dao;
 
 import com.conference.database.ConnectionFactory;
+import com.conference.exception.DaoException;
 import com.conference.model.User;
 
 import java.sql.Connection;
@@ -31,7 +32,8 @@ public class UserDao {
     }
 
     // CREATE: returns the new user_id. created_at uses the table default.
-    public int createUser(User user) throws SQLException {
+    // Throws DaoException (isUniqueViolation() is true if the email exists).
+    public int createUser(User user) {
 
         String sql = """
                 INSERT INTO Users (full_name, email, age, role)
@@ -58,12 +60,12 @@ public class UserDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Failed to create user", e);
-            throw e;
+            throw new DaoException("Could not create user", e);
         }
     }
 
     // READ one user by ID. Returns null if not found.
-    public User findById(int userId) throws SQLException {
+    public User findById(int userId) {
 
         String sql = """
                 SELECT user_id, full_name, email, age, role, created_at
@@ -85,12 +87,12 @@ public class UserDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Failed to find user by ID: " + userId, e);
-            throw e;
+            throw new DaoException("Could not find user " + userId, e);
         }
     }
 
     // READ one user by email (used for login). Returns null if not found.
-    public User findByEmail(String email) throws SQLException {
+    public User findByEmail(String email) {
 
         String sql = """
                 SELECT user_id, full_name, email, age, role, created_at
@@ -112,12 +114,12 @@ public class UserDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Failed to find user by email", e);
-            throw e;
+            throw new DaoException("Could not find user by email", e);
         }
     }
 
     // READ all users
-    public List<User> findAll() throws SQLException {
+    public List<User> findAll() {
 
         List<User> users = new ArrayList<>();
 
@@ -137,14 +139,14 @@ public class UserDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Failed to retrieve users", e);
-            throw e;
+            throw new DaoException("Could not retrieve users", e);
         }
 
         return users;
     }
 
     // UPDATE: returns the number of rows changed (0 = user not found).
-    public int updateUser(User user) throws SQLException {
+    public int updateUser(User user) {
 
         String sql = """
                 UPDATE Users
@@ -166,12 +168,13 @@ public class UserDao {
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE,
                     "Failed to update user: " + user.getUserId(), e);
-            throw e;
+            throw new DaoException(
+                    "Could not update user " + user.getUserId(), e);
         }
     }
 
     // DELETE: returns the number of rows deleted (0 = user not found).
-    public int deleteUser(int userId) throws SQLException {
+    public int deleteUser(int userId) {
 
         String sql = """
                 DELETE FROM Users
@@ -187,7 +190,7 @@ public class UserDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Failed to delete user: " + userId, e);
-            throw e;
+            throw new DaoException("Could not delete user " + userId, e);
         }
     }
 }
