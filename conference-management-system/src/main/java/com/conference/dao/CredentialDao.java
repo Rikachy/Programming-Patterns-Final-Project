@@ -16,7 +16,6 @@ public class CredentialDao {
     private static final Logger LOGGER =
             Logger.getLogger(CredentialDao.class.getName());
 
-    // CREATE: the user must already exist (foreign key).
     public int createCredential(Credential credential) {
 
         String sql = """
@@ -33,15 +32,13 @@ public class CredentialDao {
             return statement.executeUpdate();
 
         } catch (SQLException e) {
-            // We log the user ID but never the password hash.
             LOGGER.log(Level.SEVERE,
-                    "Failed to create credential for user: "
+                    "failed to create credential for user :("
                             + credential.getUserId(), e);
             throw new DaoException("Could not create credential", e);
         }
     }
 
-    // READ: returns null if the user has no credential.
     public Credential findByUserId(int userId) {
 
         String sql = """
@@ -67,13 +64,12 @@ public class CredentialDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE,
-                    "Failed to find credential for user: " + userId, e);
+                    "can't find credential for user :( " + userId, e);
             throw new DaoException(
-                    "Could not find credential for user " + userId, e);
+                    "Could not find credential " + userId, e);
         }
     }
 
-    // UPDATE: changes the password hash of one user.
     public int updatePasswordHash(int userId, String newPasswordHash) {
 
         String sql = """
@@ -92,13 +88,12 @@ public class CredentialDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE,
-                    "Failed to update password for user: " + userId, e);
+                    "can't update password for user :( " + userId, e);
             throw new DaoException(
-                    "Could not update password for user " + userId, e);
+                    "could not update password" + userId, e);
         }
     }
 
-    // DELETE
     public int deleteCredential(int userId) {
 
         String sql = """
@@ -115,9 +110,9 @@ public class CredentialDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE,
-                    "Failed to delete credential for user: " + userId, e);
+                    "can't delete credential for user :( " + userId, e);
             throw new DaoException(
-                    "Could not delete credential for user " + userId, e);
+                    "could not delete credential : " + userId, e);
         }
     }
 }

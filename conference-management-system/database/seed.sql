@@ -1,5 +1,3 @@
--- Sample users
--- Password hashes must be generated before inserting users.
 
 INSERT INTO Users (user_id, full_name, email, age, role)
 VALUES
@@ -20,8 +18,6 @@ VALUES
     (4, 'pbkdf2_sha256$210000$fule2Q+HoqoVg6Ew0HCjiA==$tkSwBj1vHV7Q4YRB/YtKu9NAIeSz0omfBynNdSLRGZ8='),
 
     (5, 'pbkdf2_sha256$210000$0Ezqk0NnSU0Zh5bPrpIOwg==$SZYgWOGEkI2Zk0apNUysaSvWjdLutLNE1tCnB+n/pZ4=');
-
--- Sample conferences
 
 INSERT INTO Conferences
 (conference_id, title, description, location,
@@ -48,8 +44,6 @@ VALUES
      '2026-12-12 15:00:00',
      2);
 
--- Sample registrations (Ilsa)
-
 INSERT INTO Registrations
 (registration_id, user_id, conference_id, status)
 VALUES
@@ -58,8 +52,6 @@ VALUES
     (3, 4, 1, 'WAITLISTED'),
     (4, 5, 1, 'WAITLISTED'),
     (5, 2, 2, 'CONFIRMED');
-
--- Sample waiting list (Ilsa)
 
 INSERT INTO WaitingList
 (waiting_id, registration_id)

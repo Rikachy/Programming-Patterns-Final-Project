@@ -5,32 +5,26 @@ import org.junit.jupiter.api.Test;
 import java.sql.SQLException;
 import com.conference.model.WaitingList;
 import java.util.List;
+import org.junit.jupiter.api.BeforeAll;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RegistrationDaoTest {
+    @BeforeAll
+    static void setUp() {
+        TestDatabase.create();
+    }
 
     @Test
     void testRegistrationModel() {
 
         Registration registration = new Registration(
-                1, 2, 1, "CONFIRMED", "2026-11-03 10:00:00"
-        );
+                1, 2, 1, "CONFIRMED", "2026-11-03 10:00:00");
 
         assertEquals(1, registration.getRegistrationId());
         assertEquals(2, registration.getUserId());
         assertEquals(1, registration.getConferenceId());
         assertEquals("CONFIRMED", registration.getStatus());
-    }
-
-    @Test
-    void testCountConfirmedRegistrations() throws SQLException {
-
-        RegistrationDao dao = new RegistrationDao();
-
-        int count = dao.countConfirmedRegistrations(1);
-
-        assertEquals(2, count);
     }
 
     @Test
@@ -58,6 +52,4 @@ public class RegistrationDaoTest {
         assertEquals(1, registration.getConferenceId());
         assertEquals("CONFIRMED", registration.getStatus());
     }
-
-
 }

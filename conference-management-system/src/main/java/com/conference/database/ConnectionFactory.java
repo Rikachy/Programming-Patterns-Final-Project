@@ -7,10 +7,11 @@ import java.sql.Statement;
 
 public class ConnectionFactory {
 
-    private static final String DB_URL = "jdbc:sqlite:conference.db";
+
+    public static String URL = "jdbc:sqlite:conference.db";
 
     public static Connection getConnection() throws SQLException {
-        Connection connection = DriverManager.getConnection(DB_URL);
+        Connection connection = DriverManager.getConnection(URL);
 
         try (Statement statement = connection.createStatement()) {
             statement.execute("PRAGMA foreign_keys = ON");
@@ -18,7 +19,6 @@ public class ConnectionFactory {
             connection.close();
             throw e;
         }
-
         return connection;
     }
 }

@@ -58,4 +58,6 @@ public class Registration {
     public void setRegisteredAt(String registeredAt) {
         this.registeredAt = registeredAt;
     }
+
+
 }

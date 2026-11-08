@@ -1,4 +1,3 @@
-
 package com.conference.dao;
 
 import com.conference.database.ConnectionFactory;
@@ -15,11 +14,9 @@ import java.util.logging.Logger;
 
 public class WaitingListDao {
 
-    private static final Logger LOGGER =
-            Logger.getLogger(WaitingListDao.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(WaitingListDao.class.getName());
 
-    public List<WaitingList> getWaitingList(int conferenceId)
-            throws SQLException {
+    public List<WaitingList> getWaitingList(int conferenceId) throws SQLException {
 
         List<WaitingList> waitingList = new ArrayList<>();
 
@@ -33,81 +30,65 @@ public class WaitingListDao {
                 ORDER BY w.waiting_id ASC
                 """;
 
-        try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, conferenceId);
 
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()) {
-                    WaitingList entry = new WaitingList(
-                            result.getInt("waiting_id"),
-                            result.getInt("registration_id"),
-                            result.getString("joined_at")
-                    );
+                    WaitingList entry = new WaitingList(result.getInt("waiting_id"), result.getInt("registration_id"), result.getString("joined_at"));
 
                     waitingList.add(entry);
                 }
             }
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE,
-                    "Failed to retrieve waiting list for conference " + conferenceId,
-                    e);
+            LOGGER.log(Level.SEVERE, "unable to retrieve waiting list for conference :( " + conferenceId, e);
             throw e;
         }
 
         return waitingList;
     }
 
-    public int addToWaitingList(int registrationId)
-            throws SQLException {
+    public int addToWaitingList(int registrationId) throws SQLException {
 
         String sql = """
                 INSERT INTO WaitingList (registration_id)
                 VALUES (?)
                 """;
 
-        try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, registrationId);
 
             return statement.executeUpdate();
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE,
-                    "Failed to add registration to waiting list: " + registrationId,
-                    e);
+            LOGGER.log(Level.SEVERE, "unable to add registration to waiting list :( " + registrationId, e);
             throw e;
         }
     }
 
-    public int removeFromWaitingList(int registrationId)
-            throws SQLException {
+    public int removeFromWaitingList(int registrationId) throws SQLException {
 
         String sql = """
                 DELETE FROM WaitingList
                 WHERE registration_id = ?
                 """;
 
-        try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, registrationId);
 
             return statement.executeUpdate();
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE,
-                    "Failed to remove registration from waiting list: " + registrationId,
-                    e);
+            LOGGER.log(Level.SEVERE, "unable to remove registration from waiting list :( " + registrationId, e);
             throw e;
         }
     }
 
-    public WaitingList getNextWaitingParticipant(int conferenceId)
-            throws SQLException {
+    public WaitingList getNextWaitingParticipant(int conferenceId) throws SQLException {
 
         String sql = """
                 SELECT w.waiting_id,
@@ -122,35 +103,25 @@ public class WaitingListDao {
                 LIMIT 1
                 """;
 
-        try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, conferenceId);
 
             try (ResultSet result = statement.executeQuery()) {
 
                 if (result.next()) {
-                    return new WaitingList(
-                            result.getInt("waiting_id"),
-                            result.getInt("registration_id"),
-                            result.getString("joined_at")
-                    );
+                    return new WaitingList(result.getInt("waiting_id"), result.getInt("registration_id"), result.getString("joined_at"));
                 }
-
                 return null;
             }
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE,
-                    "Failed to retrieve next waiting participant for conference "
-                            + conferenceId,
-                    e);
+            LOGGER.log(Level.SEVERE, "unable to retrieve next waiting participant for conference :( " + conferenceId, e);
             throw e;
         }
     }
 
-    public WaitingList findById(int waitingId)
-            throws SQLException {
+    public WaitingList findById(int waitingId) throws SQLException {
 
         String sql = """
                 SELECT waiting_id, registration_id, joined_at
@@ -158,34 +129,26 @@ public class WaitingListDao {
                 WHERE waiting_id = ?
                 """;
 
-        try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, waitingId);
 
             try (ResultSet result = statement.executeQuery()) {
 
                 if (result.next()) {
-                    return new WaitingList(
-                            result.getInt("waiting_id"),
-                            result.getInt("registration_id"),
-                            result.getString("joined_at")
-                    );
+                    return new WaitingList(result.getInt("waiting_id"), result.getInt("registration_id"), result.getString("joined_at"));
                 }
 
                 return null;
             }
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE,
-                    "Failed to find waiting-list entry: " + waitingId,
-                    e);
+            LOGGER.log(Level.SEVERE, "unable to find waiting-list entry :( " + waitingId, e);
             throw e;
         }
     }
 
-    public int updateWaitingListEntry(int waitingId, int registrationId)
-            throws SQLException {
+    public int updateWaitingListEntry(int waitingId, int registrationId) throws SQLException {
 
         String sql = """
                 UPDATE WaitingList
@@ -193,8 +156,7 @@ public class WaitingListDao {
                 WHERE waiting_id = ?
                 """;
 
-        try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection connection = ConnectionFactory.getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setInt(1, registrationId);
             statement.setInt(2, waitingId);
@@ -202,9 +164,7 @@ public class WaitingListDao {
             return statement.executeUpdate();
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE,
-                    "Failed to update waiting-list entry: " + waitingId,
-                    e);
+            LOGGER.log(Level.SEVERE, "unable to update waiting-list entry :(" + waitingId, e);
             throw e;
         }
     }

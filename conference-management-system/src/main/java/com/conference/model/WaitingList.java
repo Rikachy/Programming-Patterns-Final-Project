@@ -12,6 +12,8 @@ public class WaitingList {
         this.joinedAt = joinedAt;
     }
 
+
+
     public int getWaitingId() {
         return waitingId;
     }

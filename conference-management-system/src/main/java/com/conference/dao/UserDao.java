@@ -19,7 +19,6 @@ public class UserDao {
     private static final Logger LOGGER =
             Logger.getLogger(UserDao.class.getName());
 
-    // Turns the current row of a ResultSet into a User object.
     private User readUser(ResultSet result) throws SQLException {
         return new User(
                 result.getInt("user_id"),
@@ -31,40 +30,33 @@ public class UserDao {
         );
     }
 
-    // CREATE: returns the new user_id. created_at uses the table default.
-    // Throws DaoException (isUniqueViolation() is true if the email exists).
     public int createUser(User user) {
 
         String sql = """
                 INSERT INTO Users (full_name, email, age, role)
                 VALUES (?, ?, ?, ?)
+                RETURNING user_id
                 """;
 
         try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(
-                     sql, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, user.getFullName());
             statement.setString(2, user.getEmail());
             statement.setInt(3, user.getAge());
             statement.setString(4, user.getRole());
 
-            statement.executeUpdate();
-
-            try (ResultSet keys = statement.getGeneratedKeys()) {
-                if (keys.next()) {
-                    return keys.getInt(1);
-                }
-                throw new SQLException("User created, but no ID was returned");
+            try (ResultSet result = statement.executeQuery()) {
+                result.next();
+                return result.getInt("user_id");
             }
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Failed to create user", e);
-            throw new DaoException("Could not create user", e);
+            LOGGER.log(Level.SEVERE, "error while creating the user :(", e);
+            throw new DaoException("cannot create user", e);
         }
     }
 
-    // READ one user by ID. Returns null if not found.
     public User findById(int userId) {
 
         String sql = """
@@ -86,14 +78,12 @@ public class UserDao {
             }
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Failed to find user by ID: " + userId, e);
-            throw new DaoException("Could not find user " + userId, e);
+            LOGGER.log(Level.SEVERE, "incapable of finding user by their ID :( " + userId, e);
+            throw new DaoException("cannot find the user " + userId, e);
         }
     }
 
-    // READ one user by email (used for login). Returns null if not found.
     public User findByEmail(String email) {
-
         String sql = """
                 SELECT user_id, full_name, email, age, role, created_at
                 FROM Users
@@ -113,12 +103,11 @@ public class UserDao {
             }
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Failed to find user by email", e);
-            throw new DaoException("Could not find user by email", e);
+            LOGGER.log(Level.SEVERE, "unable to find user by their email :( ", e);
+            throw new DaoException("cannot not find user by email", e);
         }
     }
 
-    // READ all users
     public List<User> findAll() {
 
         List<User> users = new ArrayList<>();
@@ -138,14 +127,13 @@ public class UserDao {
             }
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Failed to retrieve users", e);
-            throw new DaoException("Could not retrieve users", e);
+            LOGGER.log(Level.SEVERE, "unable to retrieve the users :( ", e);
+            throw new DaoException("cannot retrieve users", e);
         }
 
         return users;
     }
 
-    // UPDATE: returns the number of rows changed (0 = user not found).
     public int updateUser(User user) {
 
         String sql = """
@@ -167,13 +155,12 @@ public class UserDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE,
-                    "Failed to update user: " + user.getUserId(), e);
+                    "unable to update user :( " + user.getUserId(), e);
             throw new DaoException(
-                    "Could not update user " + user.getUserId(), e);
+                    "cannot update user " + user.getUserId(), e);
         }
     }
 
-    // DELETE: returns the number of rows deleted (0 = user not found).
     public int deleteUser(int userId) {
 
         String sql = """
@@ -189,8 +176,8 @@ public class UserDao {
             return statement.executeUpdate();
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Failed to delete user: " + userId, e);
-            throw new DaoException("Could not delete user " + userId, e);
+            LOGGER.log(Level.SEVERE, "unable to delete user :( " + userId, e);
+            throw new DaoException("cannot delete user " + userId, e);
         }
     }
 }

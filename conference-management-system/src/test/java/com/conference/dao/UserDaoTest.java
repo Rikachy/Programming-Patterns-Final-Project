@@ -3,18 +3,23 @@ package com.conference.dao;
 import com.conference.exception.DaoException;
 import com.conference.model.User;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserDaoTest {
+
+    @BeforeAll
+    static void setUp() {
+        TestDatabase.create();
+    }
 
     @Test
     void testUserModel() {
 
         User user = new User(
                 1, "Test User", "test@mail.com", 25,
-                "PARTICIPANT", "2026-11-03 10:00:00"
-        );
+                "PARTICIPANT", "2026-11-03 10:00:00");
 
         assertEquals(1, user.getUserId());
         assertEquals("Test User", user.getFullName());
@@ -40,7 +45,6 @@ public class UserDaoTest {
         assertEquals(email, saved.getEmail());
         assertEquals(25, saved.getAge());
 
-        // clean up
         dao.deleteUser(newId);
     }
 

@@ -19,7 +19,7 @@ public class ConferenceDao {
     private static final Logger LOGGER =
             Logger.getLogger(ConferenceDao.class.getName());
 
-    // Turns the current row of a ResultSet into a Conference object.
+
     private Conference readConference(ResultSet result) throws SQLException {
         return new Conference(
                 result.getInt("conference_id"),
@@ -33,19 +33,17 @@ public class ConferenceDao {
         );
     }
 
-    // CREATE: returns the new conference_id.
-    // description and location can be null (they are optional).
     public int createConference(Conference conference) {
 
         String sql = """
                 INSERT INTO Conferences
                     (title, description, location, start_time, end_time, capacity)
                 VALUES (?, ?, ?, ?, ?, ?)
+                RETURNING conference_id
                 """;
 
         try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement statement = connection.prepareStatement(
-                     sql, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.setString(1, conference.getTitle());
             statement.setString(2, conference.getDescription());
@@ -54,23 +52,17 @@ public class ConferenceDao {
             statement.setString(5, conference.getEndTime());
             statement.setInt(6, conference.getCapacity());
 
-            statement.executeUpdate();
-
-            try (ResultSet keys = statement.getGeneratedKeys()) {
-                if (keys.next()) {
-                    return keys.getInt(1);
-                }
-                throw new SQLException(
-                        "Conference created, but no ID was returned");
+            try (ResultSet result = statement.executeQuery()) {
+                result.next();
+                return result.getInt("conference_id");
             }
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Failed to create conference", e);
-            throw new DaoException("Could not create conference", e);
+            LOGGER.log(Level.SEVERE, "conference creation failed", e);
+            throw new DaoException("cannot create conference", e);
         }
     }
 
-    // READ one conference. Returns null if not found.
     public Conference findById(int conferenceId) {
 
         String sql = """
@@ -94,13 +86,12 @@ public class ConferenceDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE,
-                    "Failed to find conference: " + conferenceId, e);
+                    "ID does not exist : " + conferenceId, e);
             throw new DaoException(
-                    "Could not find conference " + conferenceId, e);
+                    "conference is not findable :( " + conferenceId, e);
         }
     }
 
-    // READ all conferences, earliest first.
     public List<Conference> findAll() {
 
         List<Conference> conferences = new ArrayList<>();
@@ -121,23 +112,20 @@ public class ConferenceDao {
             }
 
         } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, "Failed to retrieve conferences", e);
-            throw new DaoException("Could not retrieve conferences", e);
+            LOGGER.log(Level.SEVERE, "failed to retrieve conferences :(", e);
+            throw new DaoException("couldn't retrive the conference", e);
         }
 
         return conferences;
     }
 
-    // UPDATE: returns the number of rows changed (0 = conference not found).
     public int updateConference(Conference conference) {
-
         String sql = """
                 UPDATE Conferences
                 SET title = ?, description = ?, location = ?,
                     start_time = ?, end_time = ?, capacity = ?
                 WHERE conference_id = ?
                 """;
-
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -153,11 +141,9 @@ public class ConferenceDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE,
-                    "Failed to update conference: "
-                            + conference.getConferenceId(), e);
+                    "can't update conference :(  " + conference.getConferenceId(), e);
             throw new DaoException(
-                    "Could not update conference "
-                            + conference.getConferenceId(), e);
+                    "could not update conference " + conference.getConferenceId(), e);
         }
     }
 
@@ -178,9 +164,9 @@ public class ConferenceDao {
 
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE,
-                    "Failed to delete conference: " + conferenceId, e);
+                    "can't delete conference :( " + conferenceId, e);
             throw new DaoException(
-                    "Could not delete conference " + conferenceId, e);
+                    "could not delete conference " + conferenceId, e);
         }
     }
 }

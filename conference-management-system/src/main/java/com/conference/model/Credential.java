@@ -25,4 +25,6 @@ public class Credential {
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
+
+
 }
