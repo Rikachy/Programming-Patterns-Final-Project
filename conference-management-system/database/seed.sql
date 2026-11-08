@@ -7,17 +7,17 @@ VALUES
     (4, 'Manal Fayyaz', 'manal@example.com', 28, 'PARTICIPANT'),
     (5, 'Richard Qing', 'richard@example.com', 32, 'PARTICIPANT');
 
-INSERT INTO Credentials (user_id, password_hash)
+INSERT INTO Credentials (user_id, password_hash) --used terminal to hash the password
 VALUES
-    (1, 'pbkdf2_sha256$210000$yYOr3s2I14HNJPn+MN89Ag==$Zyf3O3f65V7/r1Q/tw4V98fMpAa/e/xbuWnNT/FsR5E='),
+    (1, '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9'),
 
-    (2, 'pbkdf2_sha256$210000$8RAxnsa76ojYbTTx2Ar4QQ==$uxpBrthcOwor+cr4GhlD074EgQFa+VeLFXjsFxbzLJs='),
+    (2, '0b0aff78745b0e9d584be970efeb71fe6cc53179d04b69ba79c8e9e6d2f6475c'),
 
-    (3, 'pbkdf2_sha256$210000$yiJA4H6vmJj33Kt27Ircgw==$jz66Oc9wv8uVZHu/8/O3LYXiF1wAYKcaf6hR2K6yy+Q='),
+    (3, '2205b638d26672154d21f6cf243bfe99c061d5505935b2940236aef54057d5b5'),
 
-    (4, 'pbkdf2_sha256$210000$fule2Q+HoqoVg6Ew0HCjiA==$tkSwBj1vHV7Q4YRB/YtKu9NAIeSz0omfBynNdSLRGZ8='),
+    (4, '8c42e5addbc5a9a77b9110e880ccac6d7fcb67d066ba91c7627fa02b892f0e85'),
 
-    (5, 'pbkdf2_sha256$210000$0Ezqk0NnSU0Zh5bPrpIOwg==$SZYgWOGEkI2Zk0apNUysaSvWjdLutLNE1tCnB+n/pZ4=');
+    (5, '61bffea9215f65164ad18b45aff1436c0c165d0d5dd2087ef61b4232ba6d2c1a');
 
 INSERT INTO Conferences
 (conference_id, title, description, location,

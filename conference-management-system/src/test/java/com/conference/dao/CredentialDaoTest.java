@@ -29,7 +29,6 @@ public class CredentialDaoTest {
         UserDao userDao = new UserDao();
         CredentialDao dao = new CredentialDao();
 
-        // a credential needs a user first (foreign key)
         String email = "f" + System.nanoTime() + "@mail.com";
         int userId = userDao.createUser(
                 new User(0, "Test Person", email, 25, "PARTICIPANT", null));

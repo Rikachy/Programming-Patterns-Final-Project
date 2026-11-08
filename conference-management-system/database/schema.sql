@@ -1,5 +1,5 @@
 -- Users table
--- Stores user profile information
+
 
 CREATE TABLE IF NOT EXISTS Users (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,7 +14,6 @@ CREATE TABLE IF NOT EXISTS Users (
     );
 
 -- Credentials table
--- Stores login credentials separately from user profiles
 
 CREATE TABLE IF NOT EXISTS Credentials (
     user_id INTEGER PRIMARY KEY,
@@ -26,7 +25,6 @@ CREATE TABLE IF NOT EXISTS Credentials (
 );
 
 -- Conferences table
--- Stores conference details and maximum capacity
 
 CREATE TABLE IF NOT EXISTS Conferences (
     conference_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -44,7 +42,7 @@ CREATE TABLE IF NOT EXISTS Conferences (
 
 
 
---Registration table(Ilsa)
+--Registration table
 CREATE TABLE IF NOT EXISTS Registrations (
     registration_id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
@@ -60,7 +58,7 @@ CREATE TABLE IF NOT EXISTS Registrations (
     CHECK (status IN ('CONFIRMED', 'WAITLISTED', 'CANCELLED'))
 );
 
---Waiting List Table (Ilsa)
+--Waiting List
 CREATE TABLE IF NOT EXISTS WaitingList (
     waiting_id INTEGER PRIMARY KEY AUTOINCREMENT,
     registration_id INTEGER NOT NULL UNIQUE,

@@ -91,7 +91,6 @@ public class ConferenceDaoTest {
 
         List<Conference> conferences = dao.findAll();
 
-        //is the new conference in the list?
         boolean found = conferences.stream()
                 .anyMatch(c -> c.getConferenceId() == newId);
 
