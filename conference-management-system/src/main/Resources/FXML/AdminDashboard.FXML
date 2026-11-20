@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="383.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="48.0" layoutY="28.0" text="Admin Dashboard" />
+      <Button layoutX="317.0" layoutY="24.0" mnemonicParsing="false" text="Logout" />
+      <VBox alignment="CENTER" layoutX="99.0" layoutY="80.0" prefHeight="224.0" prefWidth="188.0">
+         <children>
+            <Button mnemonicParsing="false" text="manage Conference" />
+            <Button mnemonicParsing="false" text="Manage Participants" />
+            <Button mnemonicParsing="false" text="View Registrations" />
+            <Button mnemonicParsing="false" text="Manage Waiting Lists" />
+            <Button mnemonicParsing="false" text="Generate Reports " />
+         </children>
+      </VBox>
+      <Label layoutX="30.0" layoutY="72.0" text="Welcome, Administrator " />
+   </children>
+</AnchorPane>

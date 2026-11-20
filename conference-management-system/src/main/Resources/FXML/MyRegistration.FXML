@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="311.0" layoutY="19.0" mnemonicParsing="false" text="back" />
+      <Label layoutX="72.0" layoutY="14.0" text="My Registrations " />
+      <Button layoutX="142.0" layoutY="315.0" mnemonicParsing="false" text="Browse Conference" />
+      <TableView editable="true" layoutX="89.0" layoutY="61.0" prefHeight="225.0" prefWidth="225.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Conference" />
+          <TableColumn prefWidth="75.0" text="Status" />
+            <TableColumn prefWidth="75.0" text="Action" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
