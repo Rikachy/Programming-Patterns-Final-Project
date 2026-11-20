@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="25.0" layoutY="29.0" prefHeight="35.0" prefWidth="400.0" text="Conference Management System">
+         <font>
+            <Font name="Inter Semi Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="196.0" layoutY="64.0" text="Login">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="80.0" layoutY="117.0" text="Email">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="42.0" layoutY="176.0" text="Password">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="115.0" layoutY="231.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="222.0" text="Login">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button blendMode="DARKEN" layoutX="153.0" layoutY="294.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="144.0" text="Create Account" />
+      <TextField layoutX="158.0" layoutY="120.0" prefHeight="25.0" prefWidth="222.0" promptText="Please enter your email..." />
+      <TextField layoutX="158.0" layoutY="179.0" prefHeight="25.0" prefWidth="222.0" promptText="Please enter your password..." />
+   </children>
+</AnchorPane>

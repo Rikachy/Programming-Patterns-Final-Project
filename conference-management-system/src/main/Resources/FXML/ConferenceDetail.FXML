@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="448.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="100.0" layoutY="37.0" text="Conference Detail" />
+      <Label layoutX="100.0" layoutY="71.0" text="Java Programming Workshop" />
+      <VBox layoutX="100.0" layoutY="104.0" prefHeight="200.0" prefWidth="223.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="223.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="102.0" text="Description " />
+                  <Label text="Label" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="223.0">
+               <children>
+                  <Label text="Description" />
+                  <Label text="Label" />
+               </children></HBox>
+            <HBox prefHeight="29.0" prefWidth="223.0">
+               <children>
+                  <Label text="Date" />
+                  <Label text="Label" />
+               </children></HBox>
+            <HBox prefHeight="30.0" prefWidth="223.0">
+               <children>
+                  <Label text="Time" />
+                  <Label text="Label" />
+               </children>
+            </HBox>
+            <HBox prefHeight="35.0" prefWidth="223.0">
+               <children>
+                  <Label text="Capacity" />
+                  <Label text="Label" />
+               </children>
+            </HBox>
+            <HBox prefHeight="40.0" prefWidth="223.0">
+               <children>
+                  <Label text="Available Seats" />
+                  <Label text="Label" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button layoutX="140.0" layoutY="304.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="164.0" text="Register" />
+      <Button layoutX="142.0" layoutY="345.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="164.0" text="Join Waiting List" />
+      <Button layoutX="364.0" layoutY="25.0" mnemonicParsing="false" text="Back" />
+   </children>
+</AnchorPane>
