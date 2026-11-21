@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" layoutX="227.0" layoutY="127.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0">
+         <children>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Conference Overview">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Conference Participants">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Waiting List">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Participant Registrations">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Conference Occupancy">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Button>
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Unregeistered Conferences">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Button>
+         </children>
+      </VBox>
+      <Button layoutX="489.0" layoutY="28.0" mnemonicParsing="false" text="Back" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="30.0" />
+      <Label layoutX="76.0" layoutY="23.0" text="Generate Reports" />
+      <Label layoutX="76.0" layoutY="72.0" text="Select one of the reports:" />
+   </children>
+</AnchorPane>

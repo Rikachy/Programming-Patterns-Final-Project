@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="231.0" prefWidth="284.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="50.0" layoutY="178.0" mnemonicParsing="false" text="Yes, Cancel" />
+      <Button layoutX="158.0" layoutY="178.0" mnemonicParsing="false" text="No, Keep it" />
+      <Label layoutX="88.0" layoutY="40.0" text="Cancel Registration?" />
+      <Label layoutX="57.0" layoutY="91.0" text="Are you sure you want to cancel" />
+      <Label layoutX="80.0" layoutY="131.0" text="name of java workshop" />
+   </children>
+</AnchorPane>

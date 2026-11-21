@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="296.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="448.0" layoutY="13.0" mnemonicParsing="false" text="Button" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="20.0" />
+      <Label layoutX="66.0" layoutY="26.0" text="My Profile" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="25.0" />
+      <VBox layoutX="186.0" layoutY="78.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Full name">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin></Label>
+            <TextField>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin></TextField>
+            <Label text="Email">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin></Label>
+            <PasswordField>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin></PasswordField>
+            <Label text="Age">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin></Label>
+            <TextField>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin></TextField>
+            <Label text="Where validation appears">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Save Changes" />
+               </children>
+            </HBox>
+         </children></VBox>
+   </children>
+</AnchorPane>
