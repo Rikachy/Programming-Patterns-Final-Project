@@ -1,0 +1,78 @@
+.root {
+    -fx-background-color: black;
+    -fx-font-size: 15px;
+}
+.label {
+    -fx-text-fill: white;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4da3ff;
+    -fx-border-color: #4da3ff;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.button:hover {
+    -fx-background-color: #4da3ff;
+    -fx-text-fill: #12121c;
+}
+
+.text-field {
+    -fx-background-color: #1e1e2e;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #aab0c0;
+    -fx-border-color: #3a3a55;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.text-area {
+    -fx-control-inner-background: #1e1e2e;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #aab0c0;
+    -fx-border-color: #3a3a55;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.password-field {
+    -fx-background-color: #1e1e2e;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #aab0c0;
+    -fx-border-color: #3a3a55;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.list-view {
+    -fx-control-inner-background: #1e1e2e;
+    -fx-border-color: #3a3a55;
+    -fx-min-height: 120;
+}
+
+.list-view .list-cell {
+    -fx-background-color: transparent;
+}
+
+.title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.col-header {
+    -fx-font-weight: bold;
+    -fx-text-fill: #4da3ff;
+}
+
+.row {
+    -fx-border-color: #3a3a55;
+    -fx-border-radius: 10;
+    -fx-padding: 12 10;
+}
+
+
+.anchor-pane {
+    -fx-background-color: black;
+}

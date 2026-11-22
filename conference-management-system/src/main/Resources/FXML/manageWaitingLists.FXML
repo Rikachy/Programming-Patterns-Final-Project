@@ -3,11 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="369.0" prefWidth="462.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="369.0" prefWidth="462.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Button layoutX="369.0" layoutY="25.0" mnemonicParsing="false" text="Back" />
         <ComboBox layoutX="67.0" layoutY="82.0" prefHeight="26.0" prefWidth="342.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="90.0" />
-        <Label layoutX="53.0" layoutY="20.0" text="manage waiting Lists" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="20.0" />
+        <Label layoutX="53.0" layoutY="20.0" styleClass="title" text="Manage waiting Lists" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="20.0" />
         <Label layoutX="80.0" layoutY="51.0" text="Conference" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="55.0" />
         <GridPane layoutX="81.0" layoutY="143.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0">
             <columnConstraints>

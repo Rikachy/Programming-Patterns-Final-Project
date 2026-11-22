@@ -3,8 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button layoutX="491.0" layoutY="30.0" mnemonicParsing="false" text="Back" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="30.0" />
       <Button layoutX="274.0" layoutY="349.0" mnemonicParsing="false" text="Button" />
@@ -26,6 +25,6 @@
          </children>
       </GridPane>
       <ListView layoutX="86.0" layoutY="129.0" prefHeight="200.0" prefWidth="374.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="130.0" />
-      <Label layoutX="86.0" layoutY="34.0" text="Manage Conferences" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="35.0" />
+      <Label layoutX="70.0" layoutY="28.0" styleClass="title" text="Manage Conferences" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="28.0" />
    </children>
 </AnchorPane>

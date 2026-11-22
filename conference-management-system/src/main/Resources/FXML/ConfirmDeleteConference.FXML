@@ -2,13 +2,17 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="231.0" prefWidth="284.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="231.0" prefWidth="284.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Button layoutX="50.0" layoutY="178.0" mnemonicParsing="false" text="Yes, Delete" />
-        <Button layoutX="158.0" layoutY="178.0" mnemonicParsing="false" text="No, Keep it" />
-        <Label layoutX="88.0" layoutY="40.0" text="Delete Conference?" />
-        <Label layoutX="57.0" layoutY="91.0" text="Are you sure you want to Delete " />
-        <Label layoutX="80.0" layoutY="131.0" text="Name of the conference" />
+        <Button layoutX="33.0" layoutY="161.0" mnemonicParsing="false" text="Yes, Delete" />
+        <Button layoutX="155.0" layoutY="161.0" mnemonicParsing="false" text="No, Keep it" />
+        <Label layoutX="56.0" layoutY="29.0" text="Delete Conference?">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+        <Label layoutX="33.0" layoutY="78.0" text="Are you sure you want to Delete " />
+        <Label layoutX="62.0" layoutY="116.0" text="Name of the conference" />
     </children>
 </AnchorPane>

@@ -4,10 +4,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="296.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="535.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button layoutX="448.0" layoutY="13.0" mnemonicParsing="false" text="Button" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="20.0" />
-      <Label layoutX="66.0" layoutY="26.0" text="My Profile" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="25.0" />
+      <Label layoutX="66.0" layoutY="26.0" styleClass="title" text="My Profile" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="25.0" />
       <VBox layoutX="186.0" layoutY="78.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" text="Full name">
@@ -36,10 +36,10 @@
                </VBox.margin></TextField>
             <Label text="Where validation appears">
                <VBox.margin>
-                  <Insets left="20.0" />
+                  <Insets bottom="10.0" left="20.0" />
                </VBox.margin>
             </Label>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@../style.css">
                <children>
                   <Button mnemonicParsing="false" text="Save Changes" />
                </children>
