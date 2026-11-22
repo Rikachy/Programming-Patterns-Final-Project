@@ -69,6 +69,24 @@ public class WaitingListDao {
         }
     }
 
+
+    public int addToWaitingList(Connection connection, int registrationId)
+            throws SQLException {
+
+        String sql = """
+            INSERT INTO WaitingList (registration_id)
+            VALUES (?)
+            """;
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, registrationId);
+
+            return statement.executeUpdate();
+        }
+    }
+
+
     public int removeFromWaitingList(int registrationId) throws SQLException {
 
         String sql = """

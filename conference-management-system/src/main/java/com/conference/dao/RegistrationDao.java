@@ -118,6 +118,32 @@ public class RegistrationDao {
         }
     }
 
+
+    public int createRegistration(Connection connection,
+                                  int userId,
+                                  int conferenceId,
+                                  String status) throws SQLException {
+
+        String sql = """
+            INSERT INTO Registrations (user_id, conference_id, status)
+            VALUES (?, ?, ?)
+            RETURNING registration_id
+            """;
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, userId);
+            statement.setInt(2, conferenceId);
+            statement.setString(3, status);
+
+            try (ResultSet result = statement.executeQuery()) {
+                result.next();
+                return result.getInt("registration_id");
+            }
+        }
+    }
+
+
     public int updateRegistrationStatus(int registrationId, String newStatus)
             throws SQLException {
         if (newStatus == null || (!newStatus.equals("CONFIRMED")
@@ -170,4 +196,26 @@ public class RegistrationDao {
             throw e;
         }
     }
+
+
+    public int countConfirmed(Connection connection, int conferenceId)
+            throws SQLException {
+
+        String sql = """
+            SELECT COUNT(*)
+            FROM Registrations
+            WHERE conference_id = ?
+              AND status = 'CONFIRMED'
+            """;
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, conferenceId);
+
+            try (ResultSet result = statement.executeQuery()) {
+                return result.next() ? result.getInt(1) : 0;
+            }
+        }
+    }
+
 }
