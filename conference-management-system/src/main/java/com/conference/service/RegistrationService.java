@@ -34,19 +34,103 @@ public class RegistrationService {
     public boolean cancelRegistration(int registrationId)
             throws SQLException {
 
-        Registration registration = registrationDao.findById(registrationId);
+        try (Connection connection = ConnectionFactory.getConnection()) {
 
-        if (registration == null) {
-            return false;
+            try (Statement statement = connection.createStatement()) {
+                statement.execute("PRAGMA busy_timeout = 5000");
+                statement.execute("BEGIN IMMEDIATE");
+            }
+
+            try {
+                Registration registration =
+                        registrationDao.findById(connection, registrationId);
+
+                if (registration == null
+                        || "CANCELLED".equals(registration.getStatus())) {
+
+                    try (Statement statement = connection.createStatement()) {
+                        statement.execute("ROLLBACK");
+                    }
+                    return false;
+                }
+
+                boolean wasConfirmed =
+                        "CONFIRMED".equals(registration.getStatus());
+
+                int conferenceId = registration.getConferenceId();
+
+                registrationDao.updateRegistrationStatus(
+                        connection, registrationId, "CANCELLED");
+
+                waitingListDao.removeFromWaitingList(
+                        connection, registrationId);
+
+                if (wasConfirmed) {
+                    List<WaitingList> waitingParticipants =
+                            waitingListDao.getWaitingList(connection, conferenceId);
+
+                    for (WaitingList entry : waitingParticipants) {
+
+                        Registration candidate = registrationDao.findById(
+                                connection, entry.getRegistrationId());
+
+                        if (candidate == null
+                                || !"WAITLISTED".equals(candidate.getStatus())) {
+                            continue;
+                        }
+
+                        // Skip participants who have a scheduling conflict.
+                        if (hasSchedulingConflict(
+                                connection, candidate.getUserId(), conferenceId)) {
+                            continue;
+                        }
+
+                        String eligibilitySql = """
+                                SELECT COUNT(*)
+                                FROM Users
+                                WHERE user_id = ?
+                                  AND role = 'PARTICIPANT'
+                                """;
+
+                        try (java.sql.PreparedStatement statement =
+                                     connection.prepareStatement(eligibilitySql)) {
+
+                            statement.setInt(1, candidate.getUserId());
+
+                            try (java.sql.ResultSet result = statement.executeQuery()) {
+                                if (!result.next() || result.getInt(1) == 0) {
+                                    continue;
+                                }
+                            }
+                        }
+
+                        registrationDao.updateRegistrationStatus(
+                                connection, candidate.getRegistrationId(), "CONFIRMED");
+
+                        waitingListDao.removeFromWaitingList(
+                                connection, candidate.getRegistrationId());
+
+                        break;
+                    }
+                }
+
+                try (Statement statement = connection.createStatement()) {
+                    statement.execute("COMMIT");
+                }
+
+                return true;
+
+            } catch (SQLException | RuntimeException e) {
+
+                try (Statement statement = connection.createStatement()) {
+                    statement.execute("ROLLBACK");
+                } catch (SQLException rollbackError) {
+                    e.addSuppressed(rollbackError);
+                }
+
+                throw e;
+            }
         }
-
-        if (registration.getStatus().equals("CANCELLED")) {
-            return false;
-        }
-
-        registrationDao.updateRegistrationStatus(registrationId, "CANCELLED");
-
-        return true;
     }
 
 
@@ -310,6 +394,36 @@ public class RegistrationService {
                 }
 
                 throw e;
+            }
+        }
+    }
+
+    private boolean hasSchedulingConflict(Connection connection,
+                                          int userId,
+                                          int conferenceId)
+            throws SQLException {
+
+        String sql = """
+            SELECT COUNT(*)
+            FROM Registrations r
+            JOIN Conferences existing
+              ON r.conference_id = existing.conference_id
+            JOIN Conferences target
+              ON target.conference_id = ?
+            WHERE r.user_id = ?
+              AND r.status = 'CONFIRMED'
+              AND existing.start_time < target.end_time
+              AND existing.end_time > target.start_time
+            """;
+
+        try (java.sql.PreparedStatement statement =
+                     connection.prepareStatement(sql)) {
+
+            statement.setInt(1, conferenceId);
+            statement.setInt(2, userId);
+
+            try (java.sql.ResultSet result = statement.executeQuery()) {
+                return result.next() && result.getInt(1) > 0;
             }
         }
     }

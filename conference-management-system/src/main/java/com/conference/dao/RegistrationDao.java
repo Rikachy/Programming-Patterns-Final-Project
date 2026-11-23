@@ -218,4 +218,57 @@ public class RegistrationDao {
         }
     }
 
+    public int updateRegistrationStatus(Connection connection,
+                                        int registrationId,
+                                        String newStatus) throws SQLException {
+
+        if (!"CONFIRMED".equals(newStatus)
+                && !"WAITLISTED".equals(newStatus)
+                && !"CANCELLED".equals(newStatus)) {
+            throw new IllegalArgumentException("Invalid registration status");
+        }
+
+        String sql = """
+            UPDATE Registrations
+            SET status = ?
+            WHERE registration_id = ?
+            """;
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, newStatus);
+            statement.setInt(2, registrationId);
+
+            return statement.executeUpdate();
+        }
+    }
+
+    public Registration findById(Connection connection, int registrationId)
+            throws SQLException {
+
+        String sql = """
+            SELECT registration_id, user_id, conference_id,
+                   status, registered_at
+            FROM Registrations
+            WHERE registration_id = ?
+            """;
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, registrationId);
+
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()) {
+                    return new Registration(
+                            result.getInt("registration_id"),
+                            result.getInt("user_id"),
+                            result.getInt("conference_id"),
+                            result.getString("status"),
+                            result.getString("registered_at")
+                    );
+                }
+            }
+        }
+
+        return null;
+    }
+
 }

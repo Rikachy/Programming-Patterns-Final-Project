@@ -186,4 +186,50 @@ public class WaitingListDao {
             throw e;
         }
     }
+
+    public int removeFromWaitingList(Connection connection, int registrationId)
+            throws SQLException {
+
+        String sql = """
+            DELETE FROM WaitingList
+            WHERE registration_id = ?
+            """;
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, registrationId);
+            return statement.executeUpdate();
+        }
+    }
+
+    public List<WaitingList> getWaitingList(Connection connection, int conferenceId)
+            throws SQLException {
+
+        List<WaitingList> waitingList = new ArrayList<>();
+
+        String sql = """
+            SELECT w.waiting_id, w.registration_id, w.joined_at
+            FROM WaitingList w
+            JOIN Registrations r
+              ON w.registration_id = r.registration_id
+            WHERE r.conference_id = ?
+              AND r.status = 'WAITLISTED'
+            ORDER BY w.waiting_id ASC
+            """;
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, conferenceId);
+
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()) {
+                    waitingList.add(new WaitingList(
+                            result.getInt("waiting_id"),
+                            result.getInt("registration_id"),
+                            result.getString("joined_at")
+                    ));
+                }
+            }
+        }
+
+        return waitingList;
+    }
 }
