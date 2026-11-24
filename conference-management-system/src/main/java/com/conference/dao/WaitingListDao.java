@@ -232,4 +232,22 @@ public class WaitingListDao {
 
         return waitingList;
     }
+
+
+    public int getWaitingListPosition(int conferenceId,
+                                      int registrationId)
+            throws SQLException {
+
+        List<WaitingList> waitingList = getWaitingList(conferenceId);
+
+        for (int i = 0; i < waitingList.size(); i++) {
+
+            if (waitingList.get(i).getRegistrationId() == registrationId) {
+                return i + 1;
+            }
+        }
+
+        return -1;
+    }
+
 }

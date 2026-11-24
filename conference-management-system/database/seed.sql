@@ -37,12 +37,21 @@ VALUES
      '2026-12-11 16:00:00',
      3),
 
+
     (3, 'Cybersecurity Class',
      'A class about cybersecurity and online safety.',
      'Ottawa',
      '2026-12-12 09:00:00',
      '2026-12-12 15:00:00',
-     2);
+     2),
+
+    (4, 'Software Design Patterns Workshop',
+     'A workshop covering software design patterns.',
+     'Montreal',
+     '2026-12-10 10:00:00',
+     '2026-12-10 13:00:00',
+     3);
+
 
 INSERT INTO Registrations
 (registration_id, user_id, conference_id, status)

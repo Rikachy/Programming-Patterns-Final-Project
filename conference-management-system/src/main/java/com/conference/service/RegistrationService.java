@@ -314,13 +314,15 @@ public class RegistrationService {
                     }
                 }
 
-                // Prevent duplicate active registrations.
+
+                // Check for an existing registration.
+                int cancelledRegistrationId = -1;
+
                 String duplicateSql = """
-                    SELECT COUNT(*)
+                    SELECT registration_id, status
                     FROM Registrations
                     WHERE user_id = ?
-                      AND conference_id = ?
-                      AND status IN ('CONFIRMED', 'WAITLISTED')
+                       AND conference_id = ?
                     """;
 
                 try (java.sql.PreparedStatement statement =
@@ -330,9 +332,16 @@ public class RegistrationService {
                     statement.setInt(2, conferenceId);
 
                     try (java.sql.ResultSet result = statement.executeQuery()) {
-                        if (result.next() && result.getInt(1) > 0) {
-                            throw new IllegalArgumentException(
-                                    "Already registered");
+
+                        if (result.next()) {
+
+                            if ("CANCELLED".equals(result.getString("status"))) {
+                                cancelledRegistrationId =
+                                        result.getInt("registration_id");
+                            } else {
+                                throw new IllegalArgumentException(
+                                        "Already registered");
+                            }
                         }
                     }
                 }
@@ -371,8 +380,22 @@ public class RegistrationService {
                 boolean full = confirmedCount >= capacity;
                 String status = full ? "WAITLISTED" : "CONFIRMED";
 
-                int registrationId = registrationDao.createRegistration(
-                        connection, userId, conferenceId, status);
+
+                int registrationId;
+
+                if (cancelledRegistrationId != -1) {
+
+                    registrationId = cancelledRegistrationId;
+
+                    registrationDao.updateRegistrationStatus(
+                            connection, registrationId, status);
+
+                } else {
+
+                    registrationId = registrationDao.createRegistration(
+                            connection, userId, conferenceId, status);
+                }
+
 
                 if (full) {
                     waitingListDao.addToWaitingList(connection, registrationId);
