@@ -1,7 +1,7 @@
 
 INSERT INTO Users (user_id, full_name, email, age, role)
 VALUES
-    (1, 'System Admin', 'admin@example.com', 30, 'ADMIN'),
+    (1, 'System Admin', 'admin', 30, 'ADMIN'),
     (2, 'Ilsa Rehmat', 'ilsa@example.com', 25, 'PARTICIPANT'),
     (3, 'Jesse Oliver', 'jesse@example.com', 35, 'PARTICIPANT'),
     (4, 'Manal Fayyaz', 'manal@example.com', 28, 'PARTICIPANT'),
@@ -9,7 +9,7 @@ VALUES
 
 INSERT INTO Credentials (user_id, password_hash) --used terminal to hash the password
 VALUES
-    (1, '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9'),
+    (1, '12345678'),
 
     (2, '0b0aff78745b0e9d584be970efeb71fe6cc53179d04b69ba79c8e9e6d2f6475c'),
 

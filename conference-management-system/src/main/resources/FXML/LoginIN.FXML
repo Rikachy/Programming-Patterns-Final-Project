@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="334.0" prefWidth="439.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="334.0" prefWidth="439.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.conference.controller.LoginController">
    <children>
       <Label layoutX="25.0" layoutY="29.0" prefHeight="35.0" prefWidth="400.0" text="Conference Management System">
          <font>
@@ -26,13 +26,13 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="115.0" layoutY="231.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="222.0" text="Login">
+      <Button fx:id="onLogin" layoutX="108.0" layoutY="223.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="44.0" prefWidth="222.0" text="Login">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button blendMode="DARKEN" layoutX="153.0" layoutY="294.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="144.0" text="Create Account" />
-      <TextField layoutX="158.0" layoutY="120.0" prefHeight="25.0" prefWidth="222.0" promptText="Please enter your email..." />
-      <TextField layoutX="158.0" layoutY="179.0" prefHeight="25.0" prefWidth="222.0" promptText="Please enter your password..." />
+      <Button fx:id="onCreateAccount" layoutX="147.0" layoutY="276.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="144.0" text="Create Account" textFill="#ffffff00" />
+      <TextField fx:id="emailField" layoutX="158.0" layoutY="120.0" prefHeight="25.0" prefWidth="222.0" promptText="Please enter your email..." />
+      <PasswordField fx:id="passwordField" layoutX="158.0" layoutY="169.0" prefHeight="44.0" prefWidth="222.0" promptText="Please enter your password..." />
    </children>
 </AnchorPane>

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="357.0" prefWidth="386.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="357.0" prefWidth="386.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.conference.controller.CreateAccountController">
    <children>
       <Label layoutX="19.0" layoutY="26.0" text="Conference Management System Create Account">
          <font>
@@ -17,17 +17,17 @@
             <HBox prefHeight="39.0" prefWidth="270.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="75.0" text="Full Name" />
-                  <TextField prefHeight="34.0" prefWidth="204.0" />
+                  <TextField fx:id="fullNameTxt" prefHeight="34.0" prefWidth="204.0" />
                </children></HBox>
             <HBox prefHeight="40.0" prefWidth="270.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="74.0" text="Email" />
-                  <TextField prefHeight="34.0" prefWidth="206.0" />
+                  <TextField fx:id="emailTxt" prefHeight="34.0" prefWidth="206.0" />
                </children></HBox>
             <HBox prefHeight="33.0" prefWidth="270.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="71.0" text="Age" />
-                  <TextField prefHeight="34.0" prefWidth="205.0">
+                  <TextField fx:id="ageTxt" prefHeight="34.0" prefWidth="205.0">
                      <HBox.margin>
                         <Insets bottom="5.0" />
                      </HBox.margin></TextField>
@@ -35,12 +35,12 @@
             <HBox prefHeight="43.0" prefWidth="270.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="70.0" text="Password" />
-                  <PasswordField prefHeight="34.0" prefWidth="202.0" />
+                  <PasswordField fx:id="passwordTxt" prefHeight="34.0" prefWidth="202.0" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="131.0" layoutY="265.0" mnemonicParsing="false" text="Create Account" />
-      <Button layoutX="137.0" layoutY="308.0" mnemonicParsing="false" text="Back to Login" />
+      <Button layoutX="131.0" layoutY="265.0" mnemonicParsing="false" onAction="#onCreateAccount" text="Create Account" />
+      <Button layoutX="137.0" layoutY="308.0" mnemonicParsing="false" onAction="#onBackToLogin" text="Back to Login" />
    </children>
 </AnchorPane>
