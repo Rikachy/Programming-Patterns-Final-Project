@@ -3,30 +3,30 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="623.0" styleClass="root" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="623.0" styleClass="root" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.conference.controller.EditConferenceController">
    <children>
       <VBox spacing="20.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="75.0">
          <children>
-            <TextField promptText="Title..." />
-            <TextArea prefHeight="60.0" promptText="Description..." />
-            <TextField promptText="Location (optional)..." />
+            <TextField fx:id="titleTextField" promptText="Title..." />
+            <TextArea fx:id="descriptionTextArea" prefHeight="60.0" promptText="Description..." />
+            <TextField fx:id="locationTextField" promptText="Location (optional)..." />
             <HBox spacing="10.0">
                <children>
-                  <DatePicker maxWidth="Infinity" promptText="Start Date..." HBox.hgrow="ALWAYS" />
-                  <TextField promptText="Start Time..." HBox.hgrow="ALWAYS" />
+                  <DatePicker fx:id="startDatePicker" maxWidth="Infinity" promptText="Start Date..." HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="startTimeTextField" promptText="Start Time (HH:mm)..." HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <HBox spacing="10.0">
                <children>
-                  <DatePicker maxWidth="Infinity" promptText="End Date..." HBox.hgrow="ALWAYS" />
-                  <TextField promptText="End Time..." HBox.hgrow="ALWAYS" />
+                  <DatePicker fx:id="endDatePicker" maxWidth="Infinity" promptText="End Date..." HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="endTimeTextField" promptText="End Time (HH:mm)..." HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <TextField promptText="Capacity..." />
+            <TextField fx:id="capacityTextField" promptText="Capacity..." />
          </children>
       </VBox>
-      <Button mnemonicParsing="false" styleClass="back-btn" text="Cancel" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="25.0" />
-      <Label styleClass="title" text="Adding or Editing Conference" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="25.0" />
-      <Button mnemonicParsing="false" styleClass="big-button" text="Save" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
+      <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancel" styleClass="back-btn" text="Cancel" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="25.0" />
+      <Label fx:id="screenTitleLabel" styleClass="title" text="Adding or Editing Conference" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="25.0" />
+      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSave" styleClass="big-button" text="Save" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" />
    </children>
 </AnchorPane>

@@ -25,28 +25,28 @@ public class ParticipantDashboardController {
 
     @FXML
     private void onMyProfile() throws IOException {
-        openScreen("MyProfile.fxml");
+        openScreen("MyProfile.FXML");
     }
 
     @FXML
     private void onBrowseConferences() throws IOException {
-        openScreen("BrowseConferences.fxml");
+        openScreen("BrowseConference.FXML");
     }
 
     @FXML
     private void onMyRegistrations() throws IOException {
-        openScreen("MyRegistrations.fxml");
+        openScreen("MyRegistration.FXML");
     }
 
     @FXML
     private void onMyWaitingLists() throws IOException {
-        openScreen("MyWaitingLists.fxml");
+        openScreen("WaitingList.FXML");
     }
 
     @FXML
     private void onLogout() throws IOException {
         WhosLoggedIn.setCurrentUser(null);
-        openScreen("LoginIN.fxml");
+        openScreen("LoginIN.FXML");
     }
 
     private void openScreen(String fxmlFile) throws IOException {
