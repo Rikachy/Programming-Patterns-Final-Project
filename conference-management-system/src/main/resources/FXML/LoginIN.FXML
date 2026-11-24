@@ -26,13 +26,13 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button fx:id="onLogin" layoutX="108.0" layoutY="223.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="44.0" prefWidth="222.0" text="Login">
+      <Button layoutX="108.0" layoutY="223.0" mnemonicParsing="false" onAction="#onLogin" prefHeight="44.0" prefWidth="222.0" text="Login">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="onCreateAccount" layoutX="147.0" layoutY="276.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="144.0" text="Create Account" textFill="#ffffff00" />
-      <TextField fx:id="emailField" layoutX="158.0" layoutY="120.0" prefHeight="25.0" prefWidth="222.0" promptText="Please enter your email..." />
-      <PasswordField fx:id="passwordField" layoutX="158.0" layoutY="169.0" prefHeight="44.0" prefWidth="222.0" promptText="Please enter your password..." />
+      <Button layoutX="147.0" layoutY="276.0" mnemonicParsing="false" onAction="#onCreateAccount" prefHeight="44.0" prefWidth="144.0" text="Create Account" textFill="#ffffff00" />
+      <TextField fx:id="emailTxt" layoutX="158.0" layoutY="120.0" prefHeight="25.0" prefWidth="222.0" promptText="Please enter your email..." />
+      <PasswordField fx:id="passwordTxt" layoutX="158.0" layoutY="169.0" prefHeight="44.0" prefWidth="222.0" promptText="Please enter your password..." />
    </children>
 </AnchorPane>

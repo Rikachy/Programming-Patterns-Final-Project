@@ -4,29 +4,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="450.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="450.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.conference.controller.ParticipantDashboardController">
    <children>
       <VBox alignment="CENTER" layoutX="131.0" layoutY="126.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="189.0" text="My Profile">
+            <Button mnemonicParsing="false" onAction="#onMyProfile" prefHeight="47.0" prefWidth="189.0" text="My Profile">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="187.0" text="Browse Conferences">
+            <Button mnemonicParsing="false" onAction="#onBrowseConferences" prefHeight="43.0" prefWidth="187.0" text="Browse Conferences">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="190.0" text="My Registrations">
+            <Button mnemonicParsing="false" onAction="#onMyRegistrations" prefHeight="46.0" prefWidth="190.0" text="My Registrations">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="193.0" text="My Waiting Lists" />
+            <Button mnemonicParsing="false" onAction="#onMyWaitingLists" prefHeight="47.0" prefWidth="193.0" text="My Waiting Lists" />
          </children></VBox>
       <Label layoutX="38.0" layoutY="35.0" styleClass="title" text="Participant Dashboard" />
-      <Label layoutX="38.0" layoutY="73.0" prefHeight="22.0" prefWidth="213.0" text="Welcome, Participant" />
-      <Button layoutX="352.0" layoutY="31.0" mnemonicParsing="false" text="Logout " />
+      <Label fx:id="welcomeLabel" layoutX="38.0" layoutY="73.0" prefHeight="22.0" prefWidth="213.0" text="Welcome, Participant" />
+      <Button layoutX="352.0" layoutY="31.0" mnemonicParsing="false" onAction="#onLogout" text="Logout " />
    </children>
 </AnchorPane>

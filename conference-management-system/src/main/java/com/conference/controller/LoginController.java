@@ -6,10 +6,8 @@ import com.conference.model.Credential;
 import com.conference.model.User;
 import com.conference.util.PasswordUtil;
 import com.conference.util.WhosLoggedIn;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -21,16 +19,37 @@ import java.io.IOException;
 public class LoginController {
 
     @FXML
-    private TextField emailField;
+    private TextField emailTxt;
 
     @FXML
-    private PasswordField passwordField;
+    private PasswordField passwordTxt;
+
+    private final UserDao userDao = new UserDao();
+    private final CredentialDao credentialDao = new CredentialDao();
 
     @FXML
-    private void onLogin(ActionEvent event) throws IOException {
-        User user = new UserDao().findByEmail(emailField.getText().trim());
+    private void onLogin() throws IOException {
+        String email = emailTxt.getText().trim();
+        String password = passwordTxt.getText();
 
-        if (user == null || !passwordMatches(user, passwordField.getText())) {
+        //making sure all textboxes are filled up
+        if (email.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please make sure your email is entered").showAndWait();
+            return;
+        }
+        if (password.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please make sure your password is entered").showAndWait();
+            return;
+        }
+        //email check
+        if (!email.contains("@")) {
+            new Alert(Alert.AlertType.WARNING, "Please make sure your email is valid (includes '@')").showAndWait();
+            return;
+        }
+
+        User user = userDao.findByEmail(email);
+
+        if (user == null || !passwordMatches(user, password)) {
             new Alert(Alert.AlertType.ERROR, "Incorrect email or password.").showAndWait();
             return;
         }
@@ -38,25 +57,25 @@ public class LoginController {
         WhosLoggedIn.setCurrentUser(user);
 
         if ("ADMIN".equals(user.getRole())) {
-            openScreen(event, "AdminDashboard.FXML");
+            openScreen("AdminDashboard.FXML");
         } else {
-            openScreen(event, "ParticipantDashBoard.FXML");
+            openScreen("ParticipantDashBoard.FXML");
         }
     }
 
     @FXML
-    private void onCreateAccount(ActionEvent event) throws IOException {
-        openScreen(event, "CreateAccount.FXML");
+    private void onCreateAccount() throws IOException {
+        openScreen("CreateAccount.FXML");
     }
 
     private boolean passwordMatches(User user, String password) {
-        Credential credential = new CredentialDao().findByUserId(user.getUserId());
+        Credential credential = credentialDao.findByUserId(user.getUserId());
         return credential != null
                 && credential.getPasswordHash().equals(PasswordUtil.hash(password));
     }
 
-    private void openScreen(ActionEvent event, String fxmlFile) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    private void openScreen(String fxmlFile) throws IOException {
+        Stage stage = (Stage) emailTxt.getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/FXML/" + fxmlFile))));
         stage.sizeToScene();
     }
