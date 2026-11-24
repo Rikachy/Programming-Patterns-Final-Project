@@ -3,10 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.conference.controller.admin.ReportResultController">
     <children>
-        <Button layoutX="423.0" layoutY="32.0" mnemonicParsing="false" text="Back to Reports" AnchorPane.rightAnchor="50.60000000000002" AnchorPane.topAnchor="32.0" />
-        <Button alignment="CENTER" layoutX="236.0" layoutY="346.0" mnemonicParsing="false" text="back to Report Menu" AnchorPane.bottomAnchor="28.399999999999977" />
+        <Button fx:id="topBackButton" layoutX="423.0" layoutY="32.0" mnemonicParsing="false" onAction="#onBackToReports" text="Back to Reports" AnchorPane.rightAnchor="50.60000000000002" AnchorPane.topAnchor="32.0" />
+        <Button fx:id="bottomBackButton" alignment="CENTER" layoutX="236.0" layoutY="346.0" mnemonicParsing="false" onAction="#onBackToReports" text="Back to Report Menu" AnchorPane.bottomAnchor="28.399999999999977" />
         <GridPane layoutX="107.0" layoutY="77.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="80.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -18,13 +18,13 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label text="Conference" />
-                <Label text="Capacity" GridPane.columnIndex="1" />
-                <Label text="Occupied" GridPane.columnIndex="2" />
-                <Label text="Occupancy" GridPane.columnIndex="3" />
+                <Label fx:id="column1Label" text="Conference" />
+                <Label fx:id="column2Label" text="Capacity" GridPane.columnIndex="1" />
+                <Label fx:id="column3Label" text="Occupied" GridPane.columnIndex="2" />
+                <Label fx:id="column4Label" text="Occupancy" GridPane.columnIndex="3" />
             </children>
         </GridPane>
-        <ListView layoutX="86.0" layoutY="129.0" prefHeight="200.0" prefWidth="374.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="130.0" />
-        <Label layoutX="34.0" layoutY="30.0" styleClass="title" text="Conference Occupancy Report" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="30.0" />
+        <ListView fx:id="reportListView" layoutX="86.0" layoutY="129.0" prefHeight="200.0" prefWidth="374.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="130.0" />
+        <Label fx:id="reportTitleLabel" layoutX="34.0" layoutY="30.0" styleClass="title" text="Conference Occupancy Report" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="30.0" />
     </children>
 </AnchorPane>
