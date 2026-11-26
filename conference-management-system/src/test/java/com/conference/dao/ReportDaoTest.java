@@ -133,4 +133,58 @@ public class ReportDaoTest {
                 rows.get(1)[0]);
     }
 
+
+    @Test
+    void testWaitingListReportAfterPromotion() throws SQLException {
+
+        ReportDao dao = new ReportDao();
+
+        com.conference.service.RegistrationService service =
+                new com.conference.service.RegistrationService();
+
+        assertTrue(service.cancelRegistration(1));
+
+        List<String[]> rows = dao.getWaitingListReport(1);
+
+        assertEquals(1, rows.size());
+        assertEquals("#1", rows.get(0)[0]);
+        assertEquals("Richard Qing", rows.get(0)[1]);
+    }
+
+    @Test
+    void testConferenceParticipantsAfterPromotion() throws SQLException {
+
+        ReportDao dao = new ReportDao();
+
+        com.conference.service.RegistrationService service =
+                new com.conference.service.RegistrationService();
+
+        assertTrue(service.cancelRegistration(1));
+
+        List<String[]> rows = dao.getConferenceParticipants(1);
+
+        assertEquals(2, rows.size());
+        assertEquals("Jesse Oliver", rows.get(0)[0]);
+        assertEquals("Manal Fayyaz", rows.get(1)[0]);
+    }
+
+    @Test
+    void testParticipantReportExcludesCancelledRegistration()
+            throws SQLException {
+
+        ReportDao dao = new ReportDao();
+
+        com.conference.service.RegistrationService service =
+                new com.conference.service.RegistrationService();
+
+        assertTrue(service.cancelRegistration(1));
+
+        List<String[]> rows = dao.getParticipantRegistrations(2);
+
+        assertEquals(1, rows.size());
+        assertEquals("AI Conference", rows.get(0)[0]);
+        assertEquals("CONFIRMED", rows.get(0)[1]);
+    }
+
+
 }
