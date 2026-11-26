@@ -3,50 +3,50 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="448.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="con.conference.controller.conferenceDetailController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="448.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="100.0" layoutY="37.0" text="Conference Detail" />
-      <Label layoutX="100.0" layoutY="71.0" text="Java Programming Workshop" />
+      <Label fx:id="conferenceTitleLabel" layoutX="100.0" layoutY="71.0" text="Java Programming Workshop" />
       <VBox layoutX="100.0" layoutY="104.0" prefHeight="200.0" prefWidth="223.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="223.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="102.0" text="Description " />
-                  <Label text="Label" />
+                  <Label prefHeight="22.0" prefWidth="116.0" text="Description " />
+                  <Label fx:id="descriptionLabel" text="Label" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="223.0">
                <children>
-                  <Label text="Description" />
-                  <Label text="Label" />
+                  <Label prefHeight="22.0" prefWidth="116.0" text="Location" />
+                  <Label fx:id="locationLabel" text="Label" />
                </children></HBox>
             <HBox prefHeight="29.0" prefWidth="223.0">
                <children>
-                  <Label text="Date" />
-                  <Label text="Label" />
+                  <Label prefHeight="22.0" prefWidth="115.0" text="Date" />
+                  <Label fx:id="dateLabel" text="Label" />
                </children></HBox>
             <HBox prefHeight="30.0" prefWidth="223.0">
                <children>
-                  <Label text="Time" />
-                  <Label text="Label" />
+                  <Label prefHeight="22.0" prefWidth="116.0" text="Time" />
+                  <Label fx:id="timeLabel" text="Label" />
                </children>
             </HBox>
             <HBox prefHeight="35.0" prefWidth="223.0">
                <children>
-                  <Label text="Capacity" />
-                  <Label text="Label" />
+                  <Label prefHeight="22.0" prefWidth="114.0" text="Capacity" />
+                  <Label fx:id="capacityLabel" text="Label" />
                </children>
             </HBox>
             <HBox prefHeight="40.0" prefWidth="223.0">
                <children>
-                  <Label text="Available Seats" />
-                  <Label text="Label" />
+                  <Label prefHeight="22.0" prefWidth="115.0" text="Available Seats" />
+                  <Label fx:id="seatsLabel" text="Label" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="140.0" layoutY="304.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="164.0" text="Register" />
-      <Button layoutX="142.0" layoutY="345.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="164.0" text="Join Waiting List" />
-      <Button layoutX="364.0" layoutY="25.0" mnemonicParsing="false" text="Back" />
+      <Button fx:id="registerButton" layoutX="140.0" layoutY="304.0" mnemonicParsing="false" onAction="#onRegister" prefHeight="35.0" prefWidth="164.0" text="Register" />
+      <Button fx:id="joinWaitingListButton" layoutX="142.0" layoutY="345.0" mnemonicParsing="false" onAction="#onRegister" prefHeight="30.0" prefWidth="164.0" text="Join Waiting List" />
+      <Button fx:id="backButton" layoutX="364.0" layoutY="25.0" mnemonicParsing="false" text="Back" />
    </children>
 </AnchorPane>

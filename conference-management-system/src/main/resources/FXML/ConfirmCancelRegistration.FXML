@@ -4,15 +4,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="231.0" prefWidth="284.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="com.conference.controller.ConfirmCancelRegistrationController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="231.0" prefWidth="284.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="23.0" layoutY="161.0" mnemonicParsing="false" text="Yes, Cancel" />
-      <Button layoutX="167.0" layoutY="161.0" mnemonicParsing="false" text="No, Keep it" />
+      <Button layoutX="23.0" layoutY="161.0" mnemonicParsing="false" onAction="#onConfirmCancel" text="Yes, Cancel" />
+      <Button fx:id="keepButton" layoutX="167.0" layoutY="161.0" mnemonicParsing="false" onAction="#onKeep" text="No, Keep it" />
       <Label layoutX="52.0" layoutY="27.0" text="Cancel Registration?">
          <font>
             <Font size="19.0" />
          </font></Label>
       <Label layoutX="36.0" layoutY="79.0" text="Are you sure you want to cancel" />
-      <Label layoutX="61.0" layoutY="116.0" text="name of java workshop" />
+      <Label fx:id="conferenceNameLabel" layoutX="61.0" layoutY="116.0" text="name of java workshop" />
    </children>
 </AnchorPane>
